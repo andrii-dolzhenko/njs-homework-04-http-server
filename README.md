@@ -92,3 +92,7 @@ The interface supports keyboard navigation, visible focus, labelled fields and r
 - `test/` — HTTP integration tests.
 
 The server runs locally or on a host that supports a running Node.js process. GitHub Pages cannot execute this server.
+
+---
+
+© 2026 Andrii Dolzhenko. All Rights Reserved.
