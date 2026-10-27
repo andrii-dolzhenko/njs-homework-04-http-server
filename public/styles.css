@@ -401,6 +401,17 @@ a { color: inherit; }
   .split { grid-template-columns: 1fr; gap: 34px; }
   .headline { font-size: 52px; letter-spacing: -2.5px; }
   .copy { max-width: none; }
+  .main .button { width: 100%; }
+  .actions { flex-direction: column; align-items: stretch; gap: 12px; }
+  .actions .text-link {
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 24px;
+    border: 1px solid #bfb5ad;
+    border-radius: 30px;
+    text-decoration: none;
+  }
   .video-block { max-width: 340px; margin: 0 auto; }
   .panel { padding: 26px; }
   .principles { grid-template-columns: 1fr; gap: 22px; }
