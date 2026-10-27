@@ -31,7 +31,10 @@ function layout(title, content, activePage = '') {
         <img src="/favicon.svg" width="30" height="30" alt="">
         <span>hamster gym.</span>
       </a>
-      <nav class="nav" aria-label="Main navigation">
+      <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu" hidden>
+        <span class="menu-toggle__lines" aria-hidden="true"><span></span></span>
+      </button>
+      <nav class="nav" id="primary-navigation" aria-label="Main navigation">
         ${nav}
       </nav>
       <a class="button header__join" href="/contact">Join the club ${arrow}</a>
@@ -53,28 +56,31 @@ export function renderPage(page) {
     home: `      <div class="split">
         <div>
           <h1 class="eyebrow">Home</h1>
-          <p class="intro">A gym for tiny legends</p>
+          <p class="intro">Welcome to the Home Page</p>
           <h2 class="headline">Small paws.<br><span>Big gains.</span></h2>
           <p class="copy">A little movement. A lot of heart. A friendly fitness club for hamsters who dream beyond the wheel.</p>
           <div class="actions">
             <a class="button button--pink" href="/contact">Join the club ${arrow}</a>
             <a class="text-link" href="/about">Meet the club</a>
           </div>
-          <p class="welcome">Welcome to the Home Page</p>
         </div>
         <div class="video-block">
           <video class="video" id="training-video" controls muted loop playsinline preload="metadata" poster="/media/hamster-poster.webp" width="720" height="960" aria-label="Two animated hamsters training with tiny weights">
             <source src="/media/hamster-gym.mp4" type="video/mp4">
             Your browser cannot play this video. <a href="/media/hamster-gym.mp4">Download the hamster workout</a>.
           </video>
-          <p class="video-block__caption">Tiny weights. Huge energy.</p>
-          <button class="media-toggle" type="button" data-video-toggle hidden>Play video</button>
+          <div class="video-block__controls">
+            <p class="video-block__caption">Tiny weights. Huge energy.</p>
+            <button class="media-toggle media-toggle--video" type="button" data-video-toggle data-playing="false" aria-label="Play video" hidden>
+              <span class="media-toggle__icon" aria-hidden="true"></span>
+            </button>
+          </div>
         </div>
       </div>
       <ul class="principles" aria-label="Club principles">
-        <li>Move at your own pace</li>
-        <li>Every hamster welcome</li>
-        <li>Small steps count</li>
+        <li><span class="principles__number" aria-hidden="true">01</span><h3>Move at your own pace</h3><p>No rush. Find a rhythm that feels good.</p></li>
+        <li><span class="principles__number" aria-hidden="true">02</span><h3>Every hamster welcome</h3><p>A little crew with room for everyone.</p></li>
+        <li><span class="principles__number" aria-hidden="true">03</span><h3>Small steps count</h3><p>Every tiny effort deserves a little cheer.</p></li>
       </ul>`,
     about: `      <div class="split">
         <div>

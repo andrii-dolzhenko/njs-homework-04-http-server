@@ -82,7 +82,7 @@ npm run check
 
 Tests use `node:test` and real HTTP requests to a temporary local port. They cover routes, headers, form parsing, Unicode, HTML escaping, body-size boundaries, chunked bodies, static assets and error responses. `npm run check` also checks JavaScript syntax. GitHub Actions runs the same command on pushes and pull requests.
 
-The interface supports keyboard navigation, visible focus, labelled fields and reduced motion. Video and animation have pause controls. Navigation and form submissions work without JavaScript.
+The interface supports keyboard navigation, visible focus, labelled fields and reduced motion. The mobile menu closes with its button, Escape or a click outside the header. Video and animation have pause controls. Navigation and form submissions work without JavaScript.
 
 ## Files
 
