@@ -2,9 +2,13 @@
 
 A small HTTP server built with Node.js core modules. It serves three HTML pages, handles form submissions, and returns styled error pages. No external dependencies are needed.
 
+## Demo
+
+[Hamster Gym on Vercel](https://njs-homework-04-http-server.vercel.app/)
+
 ## Run
 
-Requires Node.js 24 or newer.
+Requires Node.js 24.
 
 ```bash
 git clone https://github.com/andrii-dolzhenko/njs-homework-04-http-server.git

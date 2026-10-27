@@ -5,7 +5,7 @@
   "description": "A native Node.js HTTP server with HTML pages and form handling.",
   "type": "module",
   "engines": {
-    "node": ">=24"
+    "node": "24.x"
   },
   "scripts": {
     "start": "node server.js",
