@@ -1,0 +1,16 @@
+{
+  "name": "njs-homework-04-http-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A native Node.js HTTP server with HTML pages and form handling.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test",
+    "check": "node scripts/check.js"
+  }
+}
