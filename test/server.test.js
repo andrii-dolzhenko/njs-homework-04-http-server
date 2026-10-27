@@ -107,18 +107,28 @@ test('missing, blank and repeated required fields return 400', async () => {
   const bodies = [
     '', 'name=Alex', 'email=a%40b.com', 'name=&email=a',
     'name=%20%20&email=a', 'name=Alex&email=%09%20',
-    'name=A&name=B&email=a', 'name=A&email=a&email=b'
+    'name=Al&name=Bob&email=a', 'name=Al&email=a&email=b'
   ];
   for (const body of bodies) checkHtml(await submit(body), 400, 'Invalid form data');
 });
 
+test('names need at least two Unicode characters after trimming', async () => {
+  for (const name of ['A', ' A ', 'Я', '🐹', '   ']) {
+    checkHtml(await submit(new URLSearchParams({ name, email: 'a@example.com' }).toString()), 400, 'Invalid form data');
+  }
+
+  for (const name of ['Al', 'Лі', '李明', ' A🐹 ']) {
+    checkHtml(await submit(new URLSearchParams({ name, email: 'a@example.com' }).toString()), 200, 'Form Submitted');
+  }
+});
+
 test('form Content-Type accepts a charset and rejects other or absent types', async () => {
-  checkHtml(await submit('name=A&email=a', {
+  checkHtml(await submit('name=Al&email=a', {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }
   }), 200, 'Form Submitted');
 
   for (const headers of [{}, { 'Content-Type': 'application/json' }, { 'Content-Type': 'text/plain' }]) {
-    checkHtml(await submit('name=A&email=a', { headers }), 400, 'Invalid form data');
+    checkHtml(await submit('name=Al&email=a', { headers }), 400, 'Invalid form data');
   }
 });
 

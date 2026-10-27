@@ -1,5 +1,4 @@
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-document.documentElement.classList.add('js');
 
 const header = document.querySelector('.header');
 const menuToggle = document.querySelector('.menu-toggle');
@@ -34,11 +33,36 @@ if (header && menuToggle && navigation) {
     if (event.target.closest('a')) setMenu(false);
   });
 
+  header.addEventListener('focusout', (event) => {
+    if (!header.contains(event.relatedTarget)) setMenu(false);
+  });
+
   mobileLayout.addEventListener('change', () => {
     const navigationHadFocus = navigation.contains(document.activeElement);
     setMenu(false);
     if (mobileLayout.matches && navigationHadFocus) menuToggle.focus();
   });
+}
+
+const form = document.querySelector('.form');
+const nameInput = document.querySelector('#name');
+
+if (form && nameInput) {
+  function validateName() {
+    const tooShort = nameInput.value !== '' && Array.from(nameInput.value.trim()).length < 2;
+    nameInput.setCustomValidity(tooShort ? 'Please enter at least 2 characters.' : '');
+  }
+
+  nameInput.addEventListener('input', validateName);
+  nameInput.addEventListener('change', validateName);
+  form.addEventListener('submit', (event) => {
+    validateName();
+    if (!nameInput.checkValidity()) {
+      event.preventDefault();
+      nameInput.reportValidity();
+    }
+  });
+  validateName();
 }
 
 const video = document.querySelector('#training-video');

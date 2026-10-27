@@ -19,6 +19,7 @@ function layout(title, content, activePage = '') {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Hamster Gym: a tiny fitness club built with a native Node.js HTTP server.">
   <title>${title} | Hamster Gym</title>
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/styles.css">
   <script src="/app.js" defer></script>
@@ -113,7 +114,8 @@ export function renderPage(page) {
           <p class="small">Big ambitions start small. Both fields are required.</p>
           <form class="form" action="/submit" method="post" accept-charset="UTF-8">
             <label for="name">Name <span class="required">(required)</span></label>
-            <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+            <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" minlength="2" aria-describedby="name-hint" required>
+            <p class="field-hint" id="name-hint">At least 2 characters.</p>
             <label for="email">Email <span class="required">(required)</span></label>
             <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
             <button class="button button--pink" type="submit">Count me in ${arrow}</button>
@@ -143,7 +145,7 @@ export function renderSubmission({ name, email }) {
 
 export function renderError(status) {
   const errors = {
-    400: ['Invalid form data', 'A tiny detail is missing. Please send a form with a non-empty name and email.', '/contact', 'Back to the form'],
+    400: ['Invalid form data', 'Please enter a name with at least 2 characters and a non-empty email.', '/contact', 'Back to the form'],
     404: ['Page Not Found', "Our hamster is going in circles. Let's get you back on track.", '/', 'Back to Home'],
     413: ['Payload Too Large', 'That is a little too much for tiny paws. Please send a request no larger than 1 MB.', '/contact', 'Back to the form'],
     500: ['Server Error', 'Our wheel needs a short break. Please try again in a moment.', '/', 'Back to Home']

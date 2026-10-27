@@ -65,7 +65,7 @@ export async function readForm(req) {
   const name = data.name.trim();
   const email = data.email.trim();
 
-  if (!name || !email) throw new RequestError(400);
+  if (Array.from(name).length < 2 || !email) throw new RequestError(400);
 
   return { name, email };
 }

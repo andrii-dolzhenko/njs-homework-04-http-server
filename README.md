@@ -55,7 +55,7 @@ Every HTML response includes `Content-Type: text/html; charset=utf-8`, a byte-ba
 
 | Status | Message | Condition |
 | --- | --- | --- |
-| 400 | Invalid form data | A name or email is missing, blank or repeated, or the form Content-Type is incorrect |
+| 400 | Invalid form data | A name is shorter than two characters, a required field is missing, blank or repeated, or the form Content-Type is incorrect |
 | 404 | Page Not Found | No route matches |
 | 413 | Payload Too Large | The POST body exceeds 1,048,576 bytes (1 MB) |
 | 500 | Server Error | An unexpected request-handling failure |
@@ -69,7 +69,7 @@ node -e 'process.stdout.write("x".repeat(1048577))' | \
     -H 'Content-Type: application/x-www-form-urlencoded' --data-binary @-
 ```
 
-Forms use `application/x-www-form-urlencoded` and are parsed with `node:querystring`. The server checks that name and email are non-empty strings after trimming. The browser also checks email syntax. Repeated required fields are rejected. Bodies are limited by their actual byte count, including chunked requests.
+Forms use `application/x-www-form-urlencoded` and are parsed with `node:querystring`. After trimming, the name must have at least two Unicode characters and the email must be non-empty. The same name rule is checked in the browser, which also checks email syntax. Repeated required fields are rejected. Bodies are limited by their actual byte count, including chunked requests.
 
 This is a fictional club and a learning project. Submissions are shown in the response only; nothing is stored or emailed. There is no database, account system or registration service. The server does not support file uploads or JSON submissions. Media is small and served as complete files; byte-range seeking is not implemented.
 
@@ -82,7 +82,7 @@ npm run check
 
 Tests use `node:test` and real HTTP requests to a temporary local port. They cover routes, headers, form parsing, Unicode, HTML escaping, body-size boundaries, chunked bodies, static assets and error responses. `npm run check` also checks JavaScript syntax. GitHub Actions runs the same command on pushes and pull requests.
 
-The interface supports keyboard navigation, visible focus, labelled fields and reduced motion. The mobile menu closes with its button, Escape or a click outside the header. Video and animation have pause controls. Navigation and form submissions work without JavaScript.
+The interface supports keyboard navigation, visible focus, labelled fields and reduced motion. The mobile header stays visible when scrolling; its menu opens over the content and closes with its button, Escape, a click outside the header or focus leaving it. Page content fades in unless reduced motion is enabled. Video and animation have pause controls. Navigation and form submissions work without JavaScript.
 
 ## Files
 
